@@ -1,0 +1,39 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "http://jaspersoft.artifactoryonline.com/jaspersoft/third-party-ce-artifacts/"
+    }
+}
+
+dependencies {
+    compile "com.revolutionanalytics.deployr:jDeployR:7.3.1"
+    compile "net.sf.jasperreports:jasperreports:6.0.0"
+    compile "commons-logging:commons-logging:1.2"
+}
+
+jar {
+    baseName = 'jRQueryExecuter'
+    version = '7.3.0'
+}
+
+javadoc {
+    title = "DeployR JasperReports Server Client Library"
+    options.overview = "src/main/java/overview.html"
+    exclude "com/revo/deployr/client/jasper/query/**/*.java"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
