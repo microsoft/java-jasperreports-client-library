@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="deployrSample" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5a314889-9cd2-4943-ad5f-13ef1bd6ca74">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="RRP_plotwidth" class="java.lang.Double" isForPrompting="false">
+		<defaultValueExpression><![CDATA[555]]></defaultValueExpression>
+	</parameter>
+	<parameter name="RRP_plotheight" class="java.lang.Double" isForPrompting="false">
+		<defaultValueExpression><![CDATA[555]]></defaultValueExpression>
+	</parameter>
+	<parameter name="RRP_dataset" class="java.lang.String">
+		<defaultValueExpression><![CDATA["iris"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="RRP_clusters" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[3]]></defaultValueExpression>
+	</parameter>
+	<parameter name="RRP_clustering_type" class="java.lang.String">
+		<defaultValueExpression><![CDATA["kmeans"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="deployrScript">
+<![CDATA[<deployr url="http://deployr-server-ip:port/deployr">
+    <script filename="Cluster_Demo_Jasperserver.R" directory="root" author="admin"/>
+</deployr>]]>
+	</queryString>
+	<field name="REPORT1" class="java.lang.String">
+		<fieldDescription><![CDATA[file:cluster_output.png]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<image>
+				<reportElement uuid="0abf08d9-34be-4373-a24b-2169a94f6eb3" x="0" y="-5" width="198" height="40"/>
+				<imageExpression><![CDATA["http://www.revolutionanalytics.com/img/logo_revolutionanalytics.gif"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="600" splitType="Stretch">
+			<image scaleImage="RetainShape">
+				<reportElement uuid="f2294c37-5751-41f9-a3b4-fcfe80b69fec" positionType="Float" x="17" y="13" width="555" height="555"/>
+				<imageExpression><![CDATA[$F{REPORT1}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+</jasperReport>
